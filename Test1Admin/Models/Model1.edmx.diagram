@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d00478c55e8b460b8ae3092de6d915a1" Name="Diagram1">
+        <EntityTypeShape EntityType="WebNgheNhacModel.Album" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Playlist" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Singer" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Song" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Type" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.User" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Album__ID_Song__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Playlists__ID_Us__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Songs__ID_Singer__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Songs__Types__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.Playlist_Songs" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

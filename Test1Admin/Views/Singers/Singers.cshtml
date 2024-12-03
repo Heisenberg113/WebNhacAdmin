@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Test1Admin.Models.Singer>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+
+<h2>Quản lý ca sĩ</h2>
+
+<button id="openModal">Thêm ca sĩ</button>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm ca sĩ</h3>
+        <label>Tên ca sĩ</label>
+        <form action="~/Admin/CreateSinger" method="post">
+            <input type="text" name="name" value="" class="form-control" required />
+            <button type="submit">Thêm</button>
+        </form>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>ID_Singer</th>
+        <th>Name</th>
+        <th>Tuy chon</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID_Singer</td>
+                <td>@item.NAME</td>
+                <td>
+                    <a href="@Url.Action("DeleteSinger", new { id = item.ID_Singer })">Xóa</a>
+
+                    <button class="openModal" data-id="@item.ID_Singer">Sửa</button>
+
+                    <div id="modal-@item.ID_Singer" class="modal">
+                        <div class="modal-content">
+                            <span class="close" data-id="@item.ID_Singer">&times;</span>
+                            <h3>Sửa ca sĩ</h3>
+                            <label>Tên ca sĩ</label>
+                            <form action="@Url.Action("UpdateSinger", new { id = item.ID_Singer })" method="post">
+                                <input type="text" name="name" value="@item.NAME" class="form-control" required />
+                                <button type="submit">Sửa</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<style>
+    button {
+        padding: 4px;
+        background-color: #e4e4e4;
+        color: black;
+        border-radius: 12px;
+    }
+</style>
+
+<script>
+    document.getElementById('openModal').onclick = function () {
+        document.getElementById('modal').style.display = 'block';
+    }
+
+    document.querySelector('.modal .close').onclick = function () {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    document.querySelectorAll('.openModal').forEach(button => {
+        button.onclick = function () {
+            const modalId = 'modal-' + this.getAttribute('data-id');
+            document.getElementById(modalId).style.display = 'block';
+        }
+    });
+
+    document.querySelectorAll('.close').forEach(span => {
+        span.onclick = function () {
+            const modalId = 'modal-' + this.getAttribute('data-id');
+            document.getElementById(modalId).style.display = 'none';
+        }
+    });
+
+    window.onclick = function (event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    }
+</script>
