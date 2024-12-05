@@ -28,7 +28,6 @@ namespace Test1Admin.Controllers
                 db.Singers.Add(singer);
                 db.SaveChanges();
             }
-            var singers = db.Singers.ToList();
             return RedirectToAction("Singers");
         }
 
@@ -46,7 +45,6 @@ namespace Test1Admin.Controllers
                 return HttpNotFound();
             }
 
-            var singers = db.Singers.ToList();
             return RedirectToAction("Singers");
         }
 
@@ -63,8 +61,6 @@ namespace Test1Admin.Controllers
             {
                 return HttpNotFound();
             }
-
-            var singers = db.Singers.ToList();
             return RedirectToAction("Singers");
         }
     }

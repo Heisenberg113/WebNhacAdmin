@@ -14,7 +14,7 @@
         <span class="close">&times;</span>
         <h3>Thêm ca sĩ</h3>
         <label>Tên ca sĩ</label>
-        <form action="~/Admin/CreateSinger" method="post">
+        <form action="~/Singers/CreateSinger" method="post">
             <input type="text" name="name" value="" class="form-control" required />
             <button type="submit">Thêm</button>
         </form>
@@ -25,18 +25,22 @@
     <tr>
         <th>ID_Singer</th>
         <th>Name</th>
-        <th>Tuy chon</th>
+        <th></th>
+        <th></th>
     </tr>
     @if (Model != null)
     {
         foreach (var item in Model)
         {
             <tr>
-                <td>@item.ID_Singer</td>
+                <td style="width:6%">@item.ID_Singer</td>
                 <td>@item.NAME</td>
-                <td>
-                    <a href="@Url.Action("DeleteSinger", new { id = item.ID_Singer })">Xóa</a>
-
+                <td style="width:2%">
+                    <form action="@Url.Action("DeleteSinger", new { id = item.ID_Singer })" method="get" >
+                        <button type="submit">Xóa</button>
+                    </form>
+                </td>
+                <td style="width:2%">
                     <button class="openModal" data-id="@item.ID_Singer">Sửa</button>
 
                     <div id="modal-@item.ID_Singer" class="modal">
@@ -45,8 +49,8 @@
                             <h3>Sửa ca sĩ</h3>
                             <label>Tên ca sĩ</label>
                             <form action="@Url.Action("UpdateSinger", new { id = item.ID_Singer })" method="post">
-                                <input type="text" name="name" value="@item.NAME" class="form-control" required />
-                                <button type="submit">Sửa</button>
+                                    <input type="text" name="name" value="@item.NAME" class="form-control" required />
+                                    <button type="submit">Sửa</button>
                             </form>
                         </div>
                     </div>
@@ -56,41 +60,4 @@
     }
 </table>
 
-<style>
-    button {
-        padding: 4px;
-        background-color: #e4e4e4;
-        color: black;
-        border-radius: 12px;
-    }
-</style>
-
-<script>
-    document.getElementById('openModal').onclick = function () {
-        document.getElementById('modal').style.display = 'block';
-    }
-
-    document.querySelector('.modal .close').onclick = function () {
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    document.querySelectorAll('.openModal').forEach(button => {
-        button.onclick = function () {
-            const modalId = 'modal-' + this.getAttribute('data-id');
-            document.getElementById(modalId).style.display = 'block';
-        }
-    });
-
-    document.querySelectorAll('.close').forEach(span => {
-        span.onclick = function () {
-            const modalId = 'modal-' + this.getAttribute('data-id');
-            document.getElementById(modalId).style.display = 'none';
-        }
-    });
-
-    window.onclick = function (event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = 'none';
-        }
-    }
-</script>
+<script src="~/Scripts/main.js"></script>
